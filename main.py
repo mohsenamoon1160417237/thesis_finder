@@ -105,6 +105,11 @@ class ThesisFinder:
         # new_matches = "]".join(new_pieces[:-1])
         return matches.strip()
 
+    def get_table_of_contents(self):
+        matches = self.find_list_of_matches(r'فهرست مطالب')
+        matches = matches.split("\n\n\n\n")[0]
+        return matches
+
     def start_search(self):
         print(self.get_student_name(), "\n")
         print(self.get_guide_name(), "\n")
@@ -116,8 +121,10 @@ class ThesisFinder:
         print(self.get_english_summary(), "\n")
         print("references:\n")
         print(self.get_references_list())
+        print("table of contents:\n")
+        print(self.get_table_of_contents())
 
 
 if __name__ == "__main__":
-    thesis_finder = ThesisFinder("نمونه پایان نامه.docx")
+    thesis_finder = ThesisFinder("پایان نامه شادی پورقدیری.docx")
     thesis_finder.start_search()
